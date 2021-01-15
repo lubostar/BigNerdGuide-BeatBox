@@ -1,6 +1,6 @@
 package sk.lubostar.bignerdguide.beatbox
 
-class Sound(assetPath: String) {
+class Sound(val assetPath: String, var id: Int? = null) {
     companion object{
         private const val WAV = ".wav"
     }
