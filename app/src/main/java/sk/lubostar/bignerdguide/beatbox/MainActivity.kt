@@ -11,10 +11,10 @@ import sk.lubostar.bignerdguide.beatbox.databinding.ListItemSoundBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private val beatBox = BeatBox(assets)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val beatBox = BeatBox(assets)
 
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -22,6 +22,11 @@ class MainActivity : AppCompatActivity() {
             layoutManager = GridLayoutManager(context, 3)
             adapter = SoundAdapter(beatBox.sounds, beatBox)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        beatBox.release()
     }
 
     private inner class SoundHolder(private val binding: ListItemSoundBinding, val beatBox: BeatBox):
