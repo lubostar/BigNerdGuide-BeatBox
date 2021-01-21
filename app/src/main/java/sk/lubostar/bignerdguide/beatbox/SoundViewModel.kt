@@ -3,11 +3,11 @@ package sk.lubostar.bignerdguide.beatbox
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 
-class SoundViewModel: BaseObservable() {
+class SoundViewModel(private val beatBox: BeatBox): BaseObservable() {
 
     var sound: Sound? = null
         set(value) {
-            field = sound
+            field = value
             notifyChange()
         }
 
@@ -15,4 +15,7 @@ class SoundViewModel: BaseObservable() {
     val title: String?
         get() = sound?.name
 
+    fun onButtonClicked() = sound?.let {
+        beatBox.play(it)
+    }
 }
