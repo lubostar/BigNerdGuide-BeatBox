@@ -11,10 +11,12 @@ import sk.lubostar.bignerdguide.beatbox.databinding.ListItemSoundBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private val beatBox = BeatBox(assets)
+    private lateinit var beatBox: BeatBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        beatBox = BeatBox(assets)
 
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
